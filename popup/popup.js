@@ -1,4 +1,8 @@
+const buttonReset = document.getElementById("buttonReset");
 const buttonLimit = document.getElementById("buttonLimit");
+var sliderCpu = document.getElementById("sliderCpu");
+var sliderMem = document.getElementById("sliderMem");
+
 if (buttonLimit) {
   buttonLimit.onclick = function () {
     const minCpu = sliderCpu.noUiSlider.get()[0];
@@ -24,9 +28,9 @@ if (buttonLimit) {
   };
 }
 
-const buttonReset = document.getElementById("buttonReset");
 if (buttonReset) {
   buttonReset.onclick = function () {
+    localStorage.clear();
     chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
       chrome.tabs.sendMessage(
         tabs[0].id,
@@ -41,8 +45,6 @@ if (buttonReset) {
     });
   };
 }
-
-var sliderCpu = document.getElementById("sliderCpu");
 
 noUiSlider.create(sliderCpu, {
   start: [1, 416],
@@ -94,8 +96,6 @@ sliderCpu.noUiSlider.on("set", function (values, handle) {
     localStorage["maxCpu"] = value;
   }
 });
-
-var sliderMem = document.getElementById("sliderMem");
 
 noUiSlider.create(sliderMem, {
   start: [1, 11400],
