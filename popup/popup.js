@@ -78,15 +78,22 @@ noUiSlider.create(sliderCpu, {
   },
 });
 
-//alert(txt);
-// slidercpu.noUiSlider.on("set", function (values, handle) {
-//   var values = slidercpu.noUiSlider.get();
-//   var value = Number(values[handle]);
-//   var steps = slidercpu.noUiSlider.steps();
-//   var step = steps[handle];
-//   console.log("prev: " + (value - step[0]));
-//   console.log("next: " + (value + step[1]));
-// });
+if (localStorage["minCpu"]) {
+  sliderCpu.noUiSlider.set([localStorage["minCpu"], null]);
+}
+if (localStorage["maxCpu"]) {
+  sliderCpu.noUiSlider.set([null, localStorage["maxCpu"]]);
+}
+
+sliderCpu.noUiSlider.on("set", function (values, handle) {
+  var values = sliderCpu.noUiSlider.get();
+  var value = Number(values[handle]);
+  if (handle == 0) {
+    localStorage["minCpu"] = value;
+  } else {
+    localStorage["maxCpu"] = value;
+  }
+});
 
 var sliderMem = document.getElementById("sliderMem");
 
@@ -136,4 +143,16 @@ noUiSlider.create(sliderMem, {
     "95%": [5700],
     max: [11400],
   },
+});
+
+if (localStorage["minMem"])
+  sliderMem.noUiSlider.set([localStorage["minMem"], null]);
+if (localStorage["maxMem"])
+  sliderMem.noUiSlider.set([null, localStorage["maxMem"]]);
+
+sliderMem.noUiSlider.on("set", function (values, handle) {
+  var values = sliderMem.noUiSlider.get();
+  var value = Number(values[handle]);
+  if (handle == 0) localStorage["minMem"] = value;
+  else localStorage["maxMem"] = value;
 });

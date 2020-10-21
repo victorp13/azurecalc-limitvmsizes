@@ -17,9 +17,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 
   switch (request.action) {
     case "limit":
-      $("body").prepend(
-        `<div>${request.minCpu} - ${request.maxCpu}</div>`
-      );
+      $("body").prepend(`<div>${request.minCpu} - ${request.maxCpu}</div>`);
 
       for (let i = 1; i < minCpu; i++) {
         $(`[name='size'] option:contains(': ${i} Core')`).hide();
@@ -31,7 +29,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
         $(`[name='size'] option:contains(': ${i} vCPU')`).hide();
       }
 
-      for (let i = 1; i < minMem; i++) {
+      for (let i = 0; i < minMem; i++) {
         $(`[name='size'] option:contains(', ${i} GB RAM')`).hide();
       }
 
@@ -41,7 +39,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
   }
 
   $(`[name='size'] option`).each(function () {
-    if ($(this).css('display') != 'none') {
+    if ($(this).css("display") != "none") {
       $(this).prop("selected", true);
       return false;
     }

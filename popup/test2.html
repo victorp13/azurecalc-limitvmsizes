@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link href="../lib/nouislider.css" rel="stylesheet" />
+  </head>
+  <body>
+    <br /><br />
+    <div id="slider"></div>
+    <script src="../lib/nouislider.js"></script>
+    <script>
+      var slider = document.getElementById("slider");
+
+      noUiSlider.create(slider, {
+        start: [16],
+        connect: true,
+        tooltips: true,
+        snap: true,
+        range: {
+          min: [1],
+          "6.25%": [2],
+          "12.5%": [4],
+          "18.75%": [6],
+          "25%": [8],
+          "31.25%": [16],
+          "37.5%": [20],
+          "43.75%": [24],
+          "50%": [32],
+          "56.25%": [48],
+          "62.5%": [64],
+          "68.75%": [72],
+          "75%": [80],
+          "81.25%": [128],
+          "87.5%": [208],
+          "93.75%": [340],
+          max: [416],
+        },
+      });
+
+      slider.noUiSlider.on("set", function (values, handle) {
+        var values = slider.noUiSlider.get();
+        var value = Number(values[handle]);
+
+        var steps = slider.noUiSlider.steps();
+        var step = steps[handle];
+        console.log(value);
+      });
+    </script>
+  </body>
+</html>
