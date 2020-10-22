@@ -33,6 +33,18 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
         $(`[name='size'] option:contains(', ${i} GB RAM')`).hide();
       }
 
+      if (minMem > 0.75) {
+        $(`[name='size'] option:contains(', 0.75 GB RAM')`).hide();
+      }
+
+      if (minMem > 1.75) {
+        $(`[name='size'] option:contains(', 1.75 GB RAM')`).hide();
+      }
+
+      if (minMem > 3.5) {
+        $(`[name='size'] option:contains(', 3.5 GB RAM')`).hide();
+      }
+
       for (let i = maxMem + 1; i <= largestMem; i++) {
         $(`[name='size'] option:contains(', ${i} GB RAM')`).hide();
       }
