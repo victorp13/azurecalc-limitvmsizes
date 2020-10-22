@@ -17,6 +17,5 @@
       "matches": ["<all_urls>"],
       "js": ["lib/jquery.min.js", "content-scripts/content.js"]
     }
-  ],
-  "permissions": ["https://azure.microsoft.com/"]
+  ]
 }

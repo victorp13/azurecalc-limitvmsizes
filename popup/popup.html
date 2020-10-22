@@ -7,12 +7,13 @@
       body {
         width: 300px;
       }
-      label {
-        padding: 5px;
+      #wrapper {
+        display: flex;
       }
-      input[type="text"] {
+      label {
+        margin: 10px 10px 10px 0px;
         padding: 5px;
-        width: 20px;
+        width: 50px;
       }
       button {
         background-color: #336dab;
@@ -22,16 +23,23 @@
         text-align: center;
         font-size: 14px;
       }
+      .slider {
+        margin: 15px;
+        width: 200px;
+      }
     </style>
   </head>
   <body>
     <h2>Limit VM sizes in Azure Calculator</h2>
     <button id="buttonReset">Reset</button><br />
-    <label for="sliderCpu">CPU:</label>
-    <div id="sliderCpu"></div>
-    <br /><br />
-    <label for="sliderMem">Memory:</label>
-    <div id="sliderMem"></div>
+    <div id="wrapper">
+      <label for="sliderCpu">Cores:</label>
+      <div id="sliderCpu" class="slider"></div>
+    </div>
+    <div id="wrapper">
+      <label for="sliderMem">Memory:</label>
+      <div id="sliderMem" class="slider"></div>
+    </div>
     <button id="buttonLimit">Limit</button>
     <script src="../lib/nouislider.js"></script>
     <script src="popup.js"></script>
